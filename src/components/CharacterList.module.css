@@ -1,0 +1,12 @@
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.character {
+    padding: 1rem 0;
+    border-radius: 0.5rem;
+    background-color: #444;
+}
