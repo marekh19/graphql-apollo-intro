@@ -1,11 +1,13 @@
-import { FC } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { FC, useState } from "react";
+import { useQuery } from "@apollo/client";
+
+import { gql } from "../__generated__/gql";
 
 import styles from "./CharacterList.module.css";
 
-const get_characters = gql`
-  query {
-    characters {
+const GET_ALL_CHARACTERS = gql(/* GraphQL */ `
+  query GetAllCharacters($page: Int!) {
+    characters(page: $page) {
       results {
         id
         name
@@ -13,24 +15,48 @@ const get_characters = gql`
       }
     }
   }
-`;
+`);
 
 export const CharacterList: FC = () => {
-  const { data, loading, error } = useQuery(get_characters);
-  console.log(data);
+  const [page, setPage] = useState(2);
+
+  const handleNextPage = () => {
+    setPage((prev) => ++prev);
+  };
+
+  const handlePrevPage = () => {
+    if (!(page - 1 < 1)) {
+      setPage((prev) => --prev);
+    }
+  };
+
+  const { data, loading } = useQuery(GET_ALL_CHARACTERS, {
+    variables: { page: page },
+  });
+
+  if (loading) return <p>Loading...</p>;
 
   return (
-    <>
-      {loading && <p>Loading</p>}
+    <div>
+      {!(page < 2) && (
+        <button type="button" onClick={handlePrevPage}>
+          Previous
+        </button>
+      )}
+      <button type="button" onClick={handleNextPage}>
+        Next
+      </button>
+
       <ul className={styles.list}>
-        {!loading &&
-          data &&
-          data.characters.results.map((character) => (
-            <li className={styles.character} key={character.id}>
-              {character.name}
-            </li>
-          ))}
+        {data.characters.results.map((character) => (
+          <li key={character.id} className={styles.character}>
+            <div>
+              <img src={character.image} />
+              <p>{character.name}</p>
+            </div>
+          </li>
+        ))}
       </ul>
-    </>
+    </div>
   );
 };
