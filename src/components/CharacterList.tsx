@@ -18,7 +18,7 @@ const GET_ALL_CHARACTERS = gql(/* GraphQL */ `
 `);
 
 export const CharacterList: FC = () => {
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
 
   const handleNextPage = () => {
     setPage((prev) => ++prev);
@@ -38,13 +38,11 @@ export const CharacterList: FC = () => {
 
   return (
     <div>
-      {!(page < 2) && (
-        <button type="button" onClick={handlePrevPage}>
-          Previous
-        </button>
-      )}
+      <button type="button" onClick={handlePrevPage} disabled={page < 2}>
+        &lt;&lt;&lt;
+      </button>
       <button type="button" onClick={handleNextPage}>
-        Next
+        &gt;&gt;&gt;
       </button>
 
       <ul className={styles.list}>
