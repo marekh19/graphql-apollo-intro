@@ -1,20 +1,20 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import type { Dispatch, FC, SetStateAction } from 'react'
 
 type Props = {
-  page: number;
-  setPage: Dispatch<SetStateAction<number>>;
-};
+  page: number
+  setPage: Dispatch<SetStateAction<number>>
+}
 
 export const Navigation: FC<Props> = ({ page, setPage }) => {
   const handleNextPage = () => {
-    setPage((prev) => ++prev);
-  };
+    setPage((prev) => ++prev)
+  }
 
   const handlePrevPage = () => {
     if (!(page - 1 < 1)) {
-      setPage((prev) => --prev);
+      setPage((prev) => --prev)
     }
-  };
+  }
 
   return (
     <>
@@ -25,5 +25,5 @@ export const Navigation: FC<Props> = ({ page, setPage }) => {
         Next
       </button>
     </>
-  );
-};
+  )
+}

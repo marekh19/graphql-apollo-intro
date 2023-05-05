@@ -1,6 +1,6 @@
-import "./App.css";
-import { CharacterList } from "./components/CharacterList";
-import { Header } from "./components/Header";
+import './App.css'
+import { CharacterList } from './components/CharacterList'
+import { Header } from './components/Header'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <Header />
       <CharacterList />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

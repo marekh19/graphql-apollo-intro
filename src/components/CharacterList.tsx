@@ -1,12 +1,12 @@
-import { FC, useState } from "react";
-import { useQuery } from "@apollo/client";
+import { FC, useState } from 'react'
+import { useQuery } from '@apollo/client'
 
-import { gql } from "../__generated__/gql";
-import { Character } from "../__generated__/graphql";
+import { gql } from '../__generated__/gql'
+import { Character } from '../__generated__/graphql'
 
-import styles from "./CharacterList.module.css";
+import styles from './CharacterList.module.css'
 
-import { Navigation } from "./Navigation";
+import { Navigation } from './Navigation'
 
 const GET_ALL_CHARACTERS = gql(/* GraphQL */ `
   query GetAllCharacters($page: Int!) {
@@ -18,14 +18,14 @@ const GET_ALL_CHARACTERS = gql(/* GraphQL */ `
       }
     }
   }
-`);
+`)
 
 export const CharacterList: FC = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1)
 
   const { data, loading } = useQuery(GET_ALL_CHARACTERS, {
     variables: { page: page },
-  });
+  })
 
   return (
     <div className={styles.wrapper}>
@@ -36,7 +36,7 @@ export const CharacterList: FC = () => {
           {data.characters.results.map((character: Character) => (
             <li key={character.id} className={styles.character}>
               <div>
-                <img src={character.image ?? ""} alt="Character image" />
+                <img src={character.image ?? ''} alt="Character image" />
                 <p>{character.name}</p>
               </div>
             </li>
@@ -44,5 +44,5 @@ export const CharacterList: FC = () => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
