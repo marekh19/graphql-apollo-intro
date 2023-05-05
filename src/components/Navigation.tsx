@@ -5,7 +5,7 @@ type Props = {
   setPage: Dispatch<SetStateAction<number>>;
 };
 
-const Navigation: FC<Props> = ({ page, setPage }) => {
+export const Navigation: FC<Props> = ({ page, setPage }) => {
   const handleNextPage = () => {
     setPage((prev) => ++prev);
   };
@@ -19,13 +19,11 @@ const Navigation: FC<Props> = ({ page, setPage }) => {
   return (
     <>
       <button type="button" onClick={handlePrevPage} disabled={page < 2}>
-        &lt;&lt;&lt;
+        Previous
       </button>
       <button type="button" onClick={handleNextPage}>
-        &gt;&gt;&gt;
+        Next
       </button>
     </>
   );
 };
-
-export default Navigation;

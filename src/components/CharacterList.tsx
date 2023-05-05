@@ -6,7 +6,7 @@ import { Character } from "../__generated__/graphql";
 
 import styles from "./CharacterList.module.css";
 
-import Navigation from "./Navigation";
+import { Navigation } from "./Navigation";
 
 const GET_ALL_CHARACTERS = gql(/* GraphQL */ `
   query GetAllCharacters($page: Int!) {
