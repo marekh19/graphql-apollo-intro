@@ -2,6 +2,8 @@ import type { Dispatch, FC, SetStateAction } from 'react'
 
 import { Button } from '../components/Button'
 
+import styles from './Navigation.module.css'
+
 type Props = {
   page: number
   setPage: Dispatch<SetStateAction<number>>
@@ -19,7 +21,7 @@ export const Navigation: FC<Props> = ({ page, setPage }) => {
   }
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <Button
         label="Previous"
         type="button"
@@ -27,6 +29,6 @@ export const Navigation: FC<Props> = ({ page, setPage }) => {
         isDisabled={page < 2}
       />
       <Button label="Next" type="button" onClick={handleNextPage} />
-    </>
+    </div>
   )
 }
